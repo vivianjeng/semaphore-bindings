@@ -96,9 +96,8 @@ import moproFFI
 
 > Will use customized library name after this is done https://github.com/zkmopro/mopro/issues/413
 
-### Identity
 
-#### `Identity`
+### `Identity`
 
 ```swift
 let privateKey = "secret".data(using: .utf8)!
@@ -114,7 +113,7 @@ identity.secretScalar()
 identity.toElement()
 ```
 
-#### `Group`
+### `Group`
 
 ```swift
 let group = Group(members: [
@@ -132,7 +131,7 @@ group.root()
 // remove member (TODO: need to be tested)
 ```
 
-#### `Proof`
+### `Proof`
 
 ```swift
 let message = "message"
