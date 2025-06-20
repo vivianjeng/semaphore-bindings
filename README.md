@@ -150,6 +150,69 @@ let proof = try generateSemaphoreProof(
 let valid = try verifySemaphoreProof(proof: proof)
 ```
 
+## Kotlin Usage
+
+Import Mopro Bindings before using semaphore package
+
+```kotlin
+import uniffi.mopro.*
+```
+
+> Will use customized library name after this is done https://github.com/zkmopro/mopro/issues/413
+
+### `Identity`
+
+```kotlin
+val privateKey = "secret".toByteArray()
+// generate an identity from privateKey
+val identity = Identity(privateKey)
+// get the identity commitment
+identity.commitment()
+// get private key
+identity.privateKey()
+// get secret scalar
+identity.secretScalar()
+// convert the type to Element to be used in Group
+identity.toElement()
+```
+
+### `Group`
+
+```kotlin
+let group = Group(listOf(
+    identity.toElement(), 
+    identity2.toElement()
+))
+// get root
+group.root()
+// get depth (TODO: need to be tested)
+// get members (TODO: need to be tested)
+// index of (TODO: need to be tested)
+// add member (TODO: need to be tested)
+// add members (TODO: need to be tested)
+// update member (TODO: need to be tested)
+// remove member (TODO: need to be tested)
+```
+
+### `Proof`
+
+```kotlin
+val message = "message"
+val scope = "scope"
+// generate semaphore proof
+// It will output a JSON string
+// You can parse it with swift JSON parser
+val proof = generateSemaphoreProof(
+    identity, 
+    group, 
+    message, 
+    scope, 
+    16.toUShort()
+)
+// verify semaphore proof
+val valid = verifySemaphoreProof(proof)
+```
+
 ## Community
 
 -   X account: <a href="https://twitter.com/zkmopro"><img src="https://img.shields.io/twitter/follow/zkmopro?style=flat-square&logo=x&label=zkmopro"></a>
