@@ -19,6 +19,9 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
+            - name: install requirements
+              run: brew install protobuf
+
             - name: Build iOS bindings
               run: |
                   CONFIGURATION=release cargo run --bin ios IOS_ARCHS=aarch64-apple-ios,aarch64-apple-ios-sim
@@ -41,6 +44,9 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
+
+            - name: install requirements
+              run: brew install protobuf
 
             - name: Build Android bindings
               run: |
