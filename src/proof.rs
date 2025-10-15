@@ -1,6 +1,6 @@
 use std::sync::Arc;
 
-use semaphore_rs::proof::{GroupOrMerkleProof, Proof, SemaphoreProof};
+use semaphore::proof::{GroupOrMerkleProof, Proof, SemaphoreProof};
 
 use crate::{group::Group, identity::Identity};
 
@@ -27,8 +27,8 @@ pub fn generate_semaphore_proof(
     scope: String,
     merkle_tree_depth: u16,
 ) -> Result<String, ProofError> {
-    let semaphore_identity = semaphore_rs::identity::Identity::new(&identity.private_key());
-    let semaphore_group = semaphore_rs::group::Group::new(
+    let semaphore_identity = semaphore::identity::Identity::new(&identity.private_key());
+    let semaphore_group = semaphore::group::Group::new(
         &group
             .members()
             .iter()

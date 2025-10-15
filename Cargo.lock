@@ -662,8 +662,9 @@ dependencies = [
 
 [[package]]
 name = "circom-prover"
-version = "0.1.2"
-source = "git+https://github.com/zkmopro/mopro.git?branch=main#3301906e14065b3fcc6f6039945d241e78d6b87e"
+version = "0.1.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "82cb9d752c87c707a7741ee2b1f9186780e20b8ea0ddb9fd288173ee10ba738e"
 dependencies = [
  "anyhow",
  "ark-bls12-381",
@@ -686,6 +687,7 @@ dependencies = [
  "rand 0.8.5",
  "rayon",
  "rust-witness",
+ "serde",
  "serde_json",
  "uuid",
  "witnesscalc-adapter",
@@ -693,8 +695,9 @@ dependencies = [
 
 [[package]]
 name = "circom-witnesscalc"
-version = "0.2.0"
-source = "git+https://github.com/zkmopro/circom-witnesscalc.git?branch=update-bindgen#68a290908181f452c9b5e0b3e23ef17321f4bb4e"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ba3fb734f91de7e7002678ea3238fddfd4ee7afd33e9ed975176f4a94794a55a"
 dependencies = [
  "anyhow",
  "ark-bn254",
@@ -1933,15 +1936,12 @@ dependencies = [
 
 [[package]]
 name = "mopro-ffi"
-version = "0.2.0"
-source = "git+https://github.com/zkmopro/mopro.git#3301906e14065b3fcc6f6039945d241e78d6b87e"
+version = "0.3.0"
+source = "git+https://github.com/zkmopro/mopro.git?branch=flutter-ffi#54df7ebd21e7b37ed052967211aa1cce3e2a5855"
 dependencies = [
  "anyhow",
  "camino",
  "color-eyre",
- "num-bigint",
- "serde",
- "serde_json",
  "thiserror 2.0.12",
  "toml 0.8.23",
  "uniffi",
@@ -2004,6 +2004,7 @@ dependencies = [
  "num-integer",
  "num-traits",
  "rand 0.8.5",
+ "serde",
 ]
 
 [[package]]
@@ -2924,16 +2925,16 @@ dependencies = [
  "anyhow",
  "mopro-ffi",
  "num-bigint",
- "semaphore-rs",
+ "semaphore-protocol",
  "thiserror 2.0.12",
- "uniffi",
  "zk-kit-lean-imt",
 ]
 
 [[package]]
-name = "semaphore-rs"
+name = "semaphore-protocol"
 version = "0.1.0"
-source = "git+https://github.com/semaphore-protocol/semaphore-rs.git#220f8da233aa4b7a48aaabf9672cad5ea1bd99a2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f6494a45b47bc5ece037ad0002d276d220496262a81a2dc1e7ae2a7cb4c532d8"
 dependencies = [
  "anyhow",
  "ark-ec",
@@ -3596,7 +3597,6 @@ dependencies = [
  "anyhow",
  "cargo_metadata",
  "uniffi_bindgen",
- "uniffi_build",
  "uniffi_core",
  "uniffi_macros",
 ]
@@ -3622,17 +3622,6 @@ dependencies = [
  "toml 0.5.11",
  "uniffi_meta",
  "uniffi_udl",
-]
-
-[[package]]
-name = "uniffi_build"
-version = "0.29.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c887a6c9a2857d8dc2ab0c8d578e8aa4978145b4fd65ed44296341e89aebc3cc"
-dependencies = [
- "anyhow",
- "camino",
- "uniffi_bindgen",
 ]
 
 [[package]]

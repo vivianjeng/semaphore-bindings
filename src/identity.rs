@@ -14,7 +14,7 @@ impl Identity {
     /// Constructor exposed to UniFFI
     #[uniffi::constructor]
     pub fn new(private_key: Vec<u8>) -> Self {
-        let identity = semaphore_rs::identity::Identity::new(&private_key);
+        let identity = semaphore::identity::Identity::new(&private_key);
         Self {
             private_key: identity.private_key().to_vec(),
             secret_scalar: identity.secret_scalar().to_string(),
@@ -47,7 +47,7 @@ impl Identity {
 
 #[cfg(test)]
 mod tests {
-    use semaphore_rs::utils::to_element;
+    use semaphore::utils::to_element;
 
     use super::*;
 
@@ -58,7 +58,7 @@ mod tests {
         println!("{:?}", identity.private_key());
         println!("{}", identity.secret_scalar());
         println!("{:?}", identity.to_element());
-        let semaphore_identity = semaphore_rs::identity::Identity::new("secret".as_bytes());
+        let semaphore_identity = semaphore::identity::Identity::new("secret".as_bytes());
         assert_eq!(
             identity.to_element(),
             to_element(*semaphore_identity.commitment())

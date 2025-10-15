@@ -1,8 +1,8 @@
 use anyhow::Result;
 use lean_imt::hashed_tree::HashedLeanIMT;
-use semaphore_rs::group::PoseidonHash;
-use semaphore_rs::group::ELEMENT_SIZE;
-use semaphore_rs::group::EMPTY_ELEMENT;
+use semaphore::group::PoseidonHash;
+use semaphore::group::ELEMENT_SIZE;
+use semaphore::group::EMPTY_ELEMENT;
 use uniffi::Object;
 
 #[derive(Debug, thiserror::Error, uniffi::Error)]
@@ -37,7 +37,7 @@ impl Group {
                     .expect("each Vec<u8> must be exactly 32 bytes")
             })
             .collect();
-        let group = semaphore_rs::group::Group::new(&vec_members).unwrap();
+        let group = semaphore::group::Group::new(&vec_members).unwrap();
         Self { tree: group.tree }
     }
 
