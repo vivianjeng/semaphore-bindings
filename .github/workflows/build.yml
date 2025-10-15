@@ -1,0 +1,60 @@
+name: Build iOS bindings and upload
+
+on:
+    push:
+        tags:
+            - "v*"
+
+permissions:
+    contents: write
+
+env:
+    CARGO_TERM_COLOR: always
+
+jobs:
+    build-ios:
+        runs-on: macos-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Build iOS bindings
+              run: |
+                  CONFIGURATION=release cargo run --bin ios IOS_ARCHS=aarch64-apple-ios,aarch64-apple-ios-sim
+
+            - name: Create ZIP of xcframework
+              run: |
+                  zip -r MoproiOSBindings.zip MoproiOSBindings
+
+            - name: Upload release asset to GitHub Release
+              uses: softprops/action-gh-release@v2
+              with:
+                  tag_name: ${{ github.ref_name }}
+                  name: MoproiOSBindings.zip
+                  files: ./MoproiOSBindings.zip
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    build-android:
+        runs-on: macos-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Build Android bindings
+              run: |
+                  CONFIGURATION=release cargo run --bin android ANDROID_ARCHS=x86_64-linux-android,aarch64-linux-android
+
+            - name: Create ZIP of aar
+              run: |
+                  zip -r MoproAndroidBindings.zip MoproAndroidBindings
+
+            - name: Upload release asset to GitHub Release
+              uses: softprops/action-gh-release@v2
+              with:
+                  tag_name: ${{ github.ref_name }}
+                  name: MoproAndroidBindings.zip
+                  files: ./MoproAndroidBindings.zip
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
